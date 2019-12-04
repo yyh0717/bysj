@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "6776080f-0c63-40b0-9124-392f22191c98",
+		"name": "TeacherTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1039f77f-6282-49b6-9549-f592bfd0540f",
+						"exec": [
+							"pm.test(\"Body matches string 苏同\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"苏同\");",
+							"});",
+							"pm.test(\"Body matches string LWX\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"LWX\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/teacher.ctl",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teacher.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8d474f08-3f49-40c0-a173-9c889eaa60dd",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"updata response\"] = jsonData.MSG === \"修改成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"degree\": {\r\n            \"description\": \"博士后\",\r\n            \"id\": 8,\r\n            \"no\": \"13\"\r\n        },\r\n        \"department\": {\r\n            \"description\": \"舞蹈艺术\",\r\n            \"id\": 5,\r\n            \"no\": \"0201\",\r\n            \"remarks\": \"\",\r\n            \"school\": {\r\n                \"description\": \"窝窝头学院\",\r\n                \"id\": 1,\r\n                \"no\": \"02\",\r\n                \"remarks\": \"最香的学院\"\r\n            }\r\n        },\r\n        \"id\": 1,\r\n        \"name\": \"苏大同\",\r\n        \"title\": {\r\n            \"description\": \"教授\",\r\n            \"id\": 1,\r\n            \"no\": \"01\"\r\n        }\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/teacher.ctl",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teacher.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE localhost:8080/teacher.ctl?id=2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d0d10a0-6baa-4eb6-a74d-6f6645ff45f3",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"删除成功\"] = jsonData.MSG === \"删除成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/teacher.ctl?id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teacher.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST localhost:8080/teacher.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "bc056deb-08ab-475b-bc04-c85e3623da95",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"添加成功\"] = jsonData.MSG === \"添加成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"degree_id\": 8,\r\n        \"department_id\":12,\r\n        \"name\": \"盖伦\",\r\n        \"proftitle_id\": 1\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/teacher.ctl",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"teacher.ctl"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

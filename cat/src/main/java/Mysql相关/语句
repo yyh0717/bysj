@@ -1,0 +1,54 @@
+create table teacher(
+      id bigint not null auto_increment,
+      name varchar(255) not null,
+      proftitle_id bigint,
+      degree_id bigint,
+      department_id bigint,
+      primary key(id,proftitle_id,degree_id,department_id),
+      foreign key (proftitle_id) references proftitle(id),
+      foreign key (degree_id) references degree(id),
+      foreign key (department_id) references department(id)
+      );
+
+
+create table department(
+     id bigint not null auto_increment,
+     description varchar(255) not null,
+     no varchar(255) not null,
+     remarks varchar(255),
+     school_id bigint,
+     primary key(id,school_id),
+     foreign key (school_id) references school(id)
+     );
+
+create table degree(
+     id bigint not null auto_increment,
+     description varchar(255) not null,
+     no varchar(255) not null,
+     remarks varchar(255),
+     primary key(id)
+     );
+
+create table profTitle(
+     id bigint not null auto_increment,
+     description varchar(255) not null,
+     no varchar(255) not null,
+     remarks varchar(255),
+     primary key(id)
+     );
+create table school(
+     id bigint not null auto_increment,
+     description varchar(255) not null,
+     no varchar(255) not null,
+     remarks varchar(255),
+     primary key(id)
+     );
+
+create table user(
+     id bigint not null auto_increment,
+     username varchar(255) not null,
+     password varchar(255) not null,
+     teacher_id bigint not null,
+     primary key(id,teacher_id),
+     foreign key (teacher_id) references teacher(id)
+     );

@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "3464260a-71c5-47a7-8381-21da2ad7b053",
+		"name": "DepartmentTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PUT localhost:8080/department.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03d225a2-2e17-4d43-87c4-c91dba3fbbd4",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"updata response\"] = jsonData.MSG === \"修改成功\"",
+							"// pm.test(\"updata response\", function () {",
+							"//     pm.expect(pm.response.text()).to.include(\"艺术管理\");",
+							"// });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"description\": \"舞蹈艺术\",\r\n        \"id\": 5,\r\n        \"no\": \"0201\",\r\n        \"remarks\": \"\",\r\n        \"school_id\":1 \r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/department.ctl",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET localhost:8080/department.ctl",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d5f6e5f6-abb3-4abf-a4cd-a4e12082f2a1",
+						"exec": [
+							"pm.test(\"Body matches string 呵呵\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"呵呵\");",
+							"});",
+							"pm.test(\"Body matches string 信息管理\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"信息管理\");",
+							"});",
+							"pm.test(\"Body matches string 信息系统\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"信息系统\");",
+							"});",
+							"pm.test(\"Body matches string 英雄联盟\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"英雄联盟\");",
+							"});",
+							"pm.test(\"Body matches string 舞蹈艺术\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"舞蹈艺术\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/department.ctl",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST localhost:8080/department.ctl",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2f866c21-7b05-419e-a214-c08e9a9a42f4",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b94de887-2ba5-43f3-8b11-fcb5f946c84f",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"增加成功\"] = jsonData.MSG === \"添加成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"description\": \"书画鉴赏\",\r\n        \"no\": \"0207\",\r\n        \"remarks\": \"好好看好好学\",\r\n        \"school_id\":6\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/department.ctl",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE localhost:8080/department.ctl?id=11",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3db1dac2-e256-4676-ab20-6716a1f94bae",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"删除成功\"] = jsonData.MSG === \"删除成功\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/department.ctl?id=11",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"department.ctl"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
